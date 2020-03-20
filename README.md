@@ -16,7 +16,7 @@ var Jimp = require('jimp');
 var lens = require('@alxcube/lens');
 var LensJimp = require('@alxcube/lens-jimp');
 
-Jimp.read('616.jpg')
+Jimp.read('source.png')
   .then(image => {
     const img   = new LensJimp(image);
 
