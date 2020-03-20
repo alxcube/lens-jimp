@@ -6,8 +6,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "lens",
+    "jimp",
+    "lens adapter",
+    "lens node"
+  ],
+  "author": "Alexander Alexandrov <alxcube@gmail.com>",
   "license": "Apache-2.0",
   "dependencies": {
     "@alxcube/lens": "^0.1",
