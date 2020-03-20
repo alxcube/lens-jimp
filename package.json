@@ -10,7 +10,7 @@
   "author": "",
   "license": "Apache-2.0",
   "dependencies": {
-    "@alxcube/lens": "file:../lens-js",
+    "@alxcube/lens": "^0.1",
     "jimp": "^0.9.3"
   }
 }
