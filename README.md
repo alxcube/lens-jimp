@@ -6,31 +6,38 @@
 ## Installation
 
 ```
-npm i @alxcube/lens-jimp
+npm i jimp @alxcube/lens @alxcube/lens-jimp
 ```
 
 ## Usage
 
 ```javascript
-var Jimp = require('jimp');
-var lens = require('@alxcube/lens');
-var LensJimp = require('@alxcube/lens-jimp');
+const {distort, Distortion} = require('@alxcube/lens');
+const Jimp = require('jimp');
+const {Adapter} = require('@alxcube/lens-jimp');
 
 Jimp.read('source.png')
   .then(image => {
-    const img   = new LensJimp(image);
+      return distort(new Adapter(image), Distortion.ARC, [90]);
+  }).then(result => result.image.getResource())
+      .then(jimp => {
+        return jimp.write('distorted.png'); // save result
+      });
+```
 
-    const args = [/* distortion arguments */];
+Also, if you import from index.js, ImageAdapter factory is invoked, so you can omit explicit adapter instantiation:
 
-    return lens.distort(
-        img,
-        lens.distorts.AFFINE, // distortion
-        args
-    );
+```javascript
+const {distort, Distortion} = require('@alxcube/lens');
+const Jimp = require('jimp');
+require('@alxcube/lens-jimp'); // Only import module for side effects
 
-  })
-  .then(distorted => {
-    return distorted.image.write('distorted.png'); // save result
-  });
+Jimp.read('source.png')
+  .then(image => {
+      return distort(image, Distortion.ARC, [90]);
+  }).then(result => result.image.getResource())
+      .then(jimp => {
+        return jimp.write('distorted.png'); // save result
+      });
 ```
 
