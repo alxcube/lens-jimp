@@ -13,5 +13,5 @@
    limitations under the License.
  */
 
-import './bindAdapter';
-export * from './Adapter';
+import "./bindAdapter";
+export * from "./Adapter";

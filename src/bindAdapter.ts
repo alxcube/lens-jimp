@@ -13,8 +13,8 @@
    limitations under the License.
  */
 
-import * as Jimp from 'jimp';
-import {Adapter} from './Adapter';
-import {bindImageAdapterFactory} from "@alxcube/lens";
+import { serviceContainer } from "@alxcube/lens";
+import { AdapterFactory } from "./AdapterFactory";
 
-bindImageAdapterFactory<Adapter>(Jimp, (jimp: Jimp) => new Adapter(jimp));
+const pool = serviceContainer.resolve("ImageAdapterFactoriesPool");
+pool.add("jimp", new AdapterFactory());

@@ -12,32 +12,33 @@ npm i jimp @alxcube/lens @alxcube/lens-jimp
 ## Usage
 
 ```javascript
-const {distort, Distortion} = require('@alxcube/lens');
-const Jimp = require('jimp');
-const {Adapter} = require('@alxcube/lens-jimp');
+const { distort } = require("@alxcube/lens");
+const Jimp = require("jimp");
+const { Adapter } = require("@alxcube/lens-jimp");
 
-Jimp.read('source.png')
-  .then(image => {
-      return distort(new Adapter(image), Distortion.ARC, [90]);
-  }).then(result => result.image.getResource())
-      .then(jimp => {
-        return jimp.write('distorted.png'); // save result
-      });
+Jimp.read("source.png")
+  .then((image) => {
+    return distort(new Adapter(image), "Arc", [90]);
+  })
+  .then((result) => result.image.getResource())
+  .then((jimp) => {
+    return jimp.write("distorted.png"); // save result
+  });
 ```
 
 Also, if you import from index.js, ImageAdapter factory is invoked, so you can omit explicit adapter instantiation:
 
 ```javascript
-const {distort, Distortion} = require('@alxcube/lens');
-const Jimp = require('jimp');
-require('@alxcube/lens-jimp'); // Only import module for side effects
+const { distort } = require("@alxcube/lens");
+const Jimp = require("jimp");
+require("@alxcube/lens-jimp"); // Only import module for side effects
 
-Jimp.read('source.png')
-  .then(image => {
-      return distort(image, Distortion.ARC, [90]);
-  }).then(result => result.image.getResource())
-      .then(jimp => {
-        return jimp.write('distorted.png'); // save result
-      });
+Jimp.read("source.png")
+  .then((image) => {
+    return distort(image, "Arc", [90]);
+  })
+  .then((result) => result.image.getResource())
+  .then((jimp) => {
+    return jimp.write("distorted.png"); // save result
+  });
 ```
-

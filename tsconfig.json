@@ -4,16 +4,18 @@
     "target": "es2017",
     "sourceMap": true,
     "declaration": true,
-    "declarationDir": "src",
-    "types": ["jimp", "offscreencanvas", "node"],
+    "declarationDir": "dist",
+    "types": ["jimp", "node", "jest"],
     "allowSyntheticDefaultImports": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "strict": true
   },
   "exclude": [
     "node_modules",
-    "node_modules/@alxcube/lens"
+    "node_modules/@alxcube/lens",
+    "src/*.spec.*"
   ],
   "include": [
     "src/**/*"
