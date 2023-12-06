@@ -2,11 +2,19 @@
   "name": "@alxcube/lens-jimp",
   "version": "3.0.0",
   "description": "Jimp adapter for @alxcube/lens library.",
-  "main": "dist/index.js",
-  "types": "src/index.d.ts",
+  "type": "module",
+  "main": "./dist/lens-jimp.umd.cjs",
+  "module": "./dist/lens-jimp.js",
+  "types": "./dist/lens-jimp.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/lens-jimp.js",
+      "require": "./dist/lens-jimp.umd.cjs"
+    }
+  },
   "scripts": {
-    "prebuild": "rm -rf dist/*",
-    "build": "npm run lint && tsc",
+    "build": "npm run lint && npm run typecheck && vite build",
+    "typecheck": "tsc",
     "test": "jest",
     "lint": "eslint ./src --ext .ts && npm run prettier",
     "prettier": "prettier --write \"src/**/*.ts\""
@@ -39,6 +47,9 @@
     "jest": "^29.7.0",
     "prettier": "^3.1.0",
     "ts-jest": "^29.1.1",
-    "typescript": "^5.3.2"
+    "typescript": "^5.3.2",
+    "vite": "^5.0.6",
+    "vite-plugin-banner": "^0.7.1",
+    "vite-plugin-dts": "^3.6.4"
   }
 }

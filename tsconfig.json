@@ -3,14 +3,15 @@
     "module": "commonjs",
     "target": "es2017",
     "sourceMap": true,
-    "declaration": true,
-    "declarationDir": "dist",
+    "declaration": false,
     "types": ["jimp", "node", "jest"],
     "allowSyntheticDefaultImports": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
     "outDir": "dist",
-    "strict": true
+    "strict": true,
+    "resolveJsonModule": true,
+    "noEmit": true
   },
   "exclude": [
     "node_modules",
