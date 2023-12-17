@@ -19,7 +19,7 @@ import { distort } from "@alxcube/lens";
 
 const sourceImage = await Adapter.createFromFile("path/to/image.png");
 const { image } = await distort(sourceImage, "Arc", [90]);
-const jimpInstance = await image.getResource();
+const jimpInstance = image.getResource();
 jimpInstance.write("path/to/result.png");
 ```
 
@@ -33,7 +33,7 @@ import { distort } from "@alxcube/lens";
 
 const sourceImage = await Jimp.read("path/to/image.png");
 const { image } = await distort(sourceImage, "Arc", [90]);
-const jimpInstance = await image.getResource();
+const jimpInstance = image.getResource();
 jimpInstance.write("path/to/result.png");
 ```
 

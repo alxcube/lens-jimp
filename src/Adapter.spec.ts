@@ -28,17 +28,17 @@ describe("Adapter class", () => {
     });
   });
 
-  describe("getImagePixelColor() method", () => {
+  describe("getPixelColor() method", () => {
     it("should return image pixel color", () => {
-      expect(adapter.getImagePixelColor(0, 0)).toEqual([255, 0, 0, 255]);
+      expect(adapter.getPixelColor(0, 0)).toEqual([255, 0, 0, 255]);
     });
   });
 
-  describe("setImagePixelColor() method", () => {
+  describe("setPixelColor() method", () => {
     it("should set image pixel color", () => {
       const color = [0, 255, 0, 255] as const;
-      adapter.setImagePixelColor(0, 0, color);
-      expect(adapter.getImagePixelColor(0, 0)).toEqual(color);
+      adapter.setPixelColor(0, 0, color);
+      expect(adapter.getPixelColor(0, 0)).toEqual(color);
     });
   });
 
@@ -49,16 +49,16 @@ describe("Adapter class", () => {
   });
 
   describe("getResource() method", () => {
-    it("should return promise of Jimp instance", async () => {
-      const instance = await adapter.getResource();
+    it("should return promise of Jimp instance", () => {
+      const instance = adapter.getResource();
       expect(instance).toBeInstanceOf(Jimp);
       expect(instance).toBe(image);
     });
   });
 
   describe("getBlank() method", () => {
-    it("should return promise of Jimp instance with fully transparent image resource", async () => {
-      const blank = await adapter.getBlank(new Viewport(0, 0, 29, 29));
+    it("should return promise of Jimp instance with fully transparent image resource", () => {
+      const blank = adapter.getBlank(new Viewport(0, 0, 29, 29));
       expect(blank.width).toBe(30);
       expect(blank.height).toBe(30);
       expect(blank.getPixelColor(0, 0)).toEqual([0, 0, 0, 0]);
@@ -66,9 +66,9 @@ describe("Adapter class", () => {
   });
 
   describe("scale() method", () => {
-    it("should return promise of instance adapter scaled to given scale", async () => {
-      const instance = await adapter.scale(0.5);
-      const jimp = await instance.getResource();
+    it("should return promise of instance adapter scaled to given scale", () => {
+      const instance = adapter.scale(0.5);
+      const jimp = instance.getResource();
       expect(jimp.getWidth()).toBe(50);
       expect(jimp.getHeight()).toBe(50);
     });

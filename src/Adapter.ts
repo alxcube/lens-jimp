@@ -52,7 +52,7 @@ export class Adapter
   /**
    * @inheritDoc
    */
-  getImagePixelColor(x: number, y: number): Color {
+  getPixelColor(x: number, y: number): Color {
     const { r, g, b, a } = Jimp.intToRGBA(this.image.getPixelColor(x, y));
     return [r, g, b, a];
   }
@@ -60,8 +60,12 @@ export class Adapter
   /**
    * @inheritDoc
    */
-  setImagePixelColor(x: number, y: number, color: Color): void {
-    this.image.setPixelColor(Jimp.rgbaToInt(...color), x, y);
+  setPixelColor(x: number, y: number, color: Color): void {
+    this.image.setPixelColor(
+      Jimp.rgbaToInt(color[0], color[1], color[2], color[3]),
+      x,
+      y
+    );
   }
 
   /**
@@ -75,29 +79,29 @@ export class Adapter
   /**
    * @inheritDoc
    */
-  protected resize(width: number, height: number): Promise<Adapter> {
+  protected resize(width: number, height: number): Adapter {
     const resized = this.image.clone().resize(width, height);
-    return Promise.resolve(new Adapter(resized));
+    return new Adapter(resized);
   }
 
   /**
    * @inheritDoc
    */
-  protected prepareBlank(width: number, height: number): Promise<Adapter> {
-    return Promise.resolve(new Adapter(new Jimp(width, height, 0x0)));
+  protected prepareBlank(width: number, height: number): Adapter {
+    return new Adapter(new Jimp(width, height, 0x0));
   }
 
   /**
    * @inheritDoc
    */
-  getResource(): Promise<Jimp> {
-    return Promise.resolve(this.image);
+  getResource(): Jimp {
+    return this.image;
   }
 
   /**
    * @inheritDoc
    */
-  commit(): Promise<Adapter> {
-    return Promise.resolve(this);
+  commit(): void {
+    return;
   }
 }
