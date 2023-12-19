@@ -32,7 +32,7 @@
     "src/"
   ],
   "dependencies": {
-    "@alxcube/lens": "file:../lens",
+    "@alxcube/lens": "^2.0.0",
     "jimp": "^0.22.10"
   },
   "devDependencies": {
